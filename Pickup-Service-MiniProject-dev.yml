@@ -37,4 +37,4 @@ spring:
               packages: "*"
             value:
               default:
-                type: com.kodewala.pickup.event.PickupAssignEvent
+                type: com.kodewala.pickup.event.OrderCreatedEvent

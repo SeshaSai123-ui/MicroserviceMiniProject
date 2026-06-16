@@ -35,4 +35,4 @@ spring:
         spring.json.trusted.packages: "*"
 
         # Your local DTO/Event class
-        spring.json.value.default.type: com.delivery.event.DeliveryEvent
+        spring.json.value.default.type: com.kodewala.delivery.event.DeliveryEvent

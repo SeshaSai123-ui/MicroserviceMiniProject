@@ -28,17 +28,12 @@ spring:
       retries: 3
 
       properties:
-        retry:
-          backoff:
-            ms: 1000
-        enable:
-          idempotence: true
-        max:
-          in:
-            flight:
-              requests:
-                per:
-                  connection: 5
+        retry.backoff.ms: 1000
+        enable.idempotence: true
+        max.in.flight.requests.per.connection: 5
+
+        # Do not send __TypeId__ header
+        spring.json.add.type.headers: false
 
     consumer:
       group-id: pickup-group
@@ -50,10 +45,11 @@ spring:
       enable-auto-commit: false
 
       properties:
-        spring:
-          json:
-            trusted:
-              packages: "*"
-            value:
-              default:
-                type: com.kodewala.order.event.OrderCreatedEvent
+        # Ignore incoming type headers
+        spring.json.use.type.headers: false
+
+        # Allow deserialization
+        spring.json.trusted.packages: "*"
+
+        # Target DTO/Event class in this service
+        spring.json.value.default.type: com.kodewala.order.event.OrderCreatedEvent

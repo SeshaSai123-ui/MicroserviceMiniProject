@@ -52,4 +52,4 @@ spring:
         spring.json.trusted.packages: "*"
 
         # Target DTO/Event class in this service
-        spring.json.value.default.type: com.kodewala.order.event.OrderCreatedEvent
+        spring.json.value.default.type: com.kodewala.pickup.event.PickupGettingEvent

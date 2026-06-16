@@ -20,6 +20,26 @@ spring:
   kafka:
     bootstrap-servers: localhost:9092
 
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.LongSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+      acks: all
+      retries: 3
+
+      properties:
+        retry:
+          backoff:
+            ms: 1000
+        enable:
+          idempotence: true
+        max:
+          in:
+            flight:
+              requests:
+                per:
+                  connection: 5
+
     consumer:
       group-id: pickup-group
       auto-offset-reset: earliest
@@ -28,7 +48,6 @@ spring:
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
 
       enable-auto-commit: false
-      auto-commit-interval: 1000
 
       properties:
         spring:
